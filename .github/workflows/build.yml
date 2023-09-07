@@ -30,7 +30,6 @@ jobs:
           private_key: '${{ secrets.WIREGUARD_PRIVATE }}'
           preshared_key: '${{ secrets.WIREGUARD_PRESHARED }}'      
       
-      - run: curl -vk https://sonarqube.squantumengine.com
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
