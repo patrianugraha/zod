@@ -34,7 +34,6 @@ jobs:
       - run: sudo wg setconf wg0 wireguard.conf
 
       - run: sudo ip link set up dev wg0
-      - run: curl -vvv https://sonarqube.squantumengine.com/
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
