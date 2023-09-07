@@ -2847,3 +2847,4 @@ View the changelog at [CHANGELOG.md](CHANGELOG.md)
 # TEST
 Trigger1
 Trigger2
+Trigger3
