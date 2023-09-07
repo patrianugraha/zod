@@ -25,13 +25,13 @@ jobs:
  
       - run: sudo apt install wireguard
 
-      - run: ip link add dev wg0 type wireguard
+      - run: sudo ip link add dev wg0 type wireguard
 
-      - run: ip address add dev wg0 100.93.172.194/24
+      - run: sudo ip address add dev wg0 100.93.172.194/24
 
       - run: echo '${{ secrets.WIREGUARD_CONFIG }}' > wireguard.conf
 
-      - run: wg setconf wg0 wireguard.conf
+      - run: sudo wg setconf wg0 wireguard.conf
 
       - run: ip link set up dev wg0
       - run: curl -vvv https://sonarqube.squantumengine.com/
