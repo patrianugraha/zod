@@ -19,6 +19,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      - name: Set up WireGuard
+        uses: egor-tensin/setup-wireguard@v1
+        with:
+          endpoint: '${{ secrets.WIREGUARD_ENDPOINT }}'
+          endpoint_public_key: '${{ secrets.WIREGUARD_ENDPOINT_PUBLIC }}'
+          ips: '${{ secrets.WIREGUARD_IPS }}'
+          allowed_ips: '${{ secrets.WIREGUARD_ALLOWED_IPS }}'
+          private_key: '${{ secrets.WIREGUARD_PRIVATE }}'
+          preshared_key: '${{ secrets.WIREGUARD_PRESHARED }}'     
+
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
