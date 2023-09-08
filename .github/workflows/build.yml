@@ -24,7 +24,9 @@ jobs:
 
       - run: sudo mkdir -p /etc/wireguard
 
-      - run: sudo echo '${{ secrets.WIREGUARD_CONFIG }}' > /etc/wireguard/wg0.conf
+      - run: echo '${{ secrets.WIREGUARD_CONFIG }}' > wg0.conf
+
+      - run: sudo cp wg0.conf /etc/wireguard
 
       - run: sudo wg-quick up wg0
 
