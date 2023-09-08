@@ -24,15 +24,11 @@ jobs:
           sudo apt install wireguard
           sudo apt install resolvconf
 
-      - run: sudo mkdir -p /etc/wireguard
-
       - run: echo '${{ secrets.WIREGUARD_CONFIG }}' > wg0.conf
 
       - run: sudo cp wg0.conf /etc/wireguard
 
       - run: sudo wg-quick up wg0
-
-      - run: ip addr
 
       - run: curl -vvv https://sonarqube.squantumengine.com
 
