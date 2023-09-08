@@ -25,7 +25,6 @@ jobs:
           sudo apt install wireguard
           sudo apt install resolvconf
           sudo apt install openjdk-17-jre
-          sudo apt install unzip
 
 
       - name: Config Sonar
@@ -41,6 +40,11 @@ jobs:
           sudo wg-quick up wg0
 
       - name: Sonar Analysis
-        run: /opt/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }}  -Dsonar.projectKey=${{ github.event.repository.name }} -Dsonar.sources=src
+        run: /opt/sonar-scanner/bin/sonar-scanner \
+              -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+              -Dsonar.token=${{ secrets.SONAR_TOKEN }}  \
+              -Dsonar.projectKey=${{ github.event.repository.name }} \
+              -Dsonar.organization=patrianugraha \
+              -Dsonar.sources=src
           
           
