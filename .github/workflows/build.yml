@@ -25,6 +25,8 @@ jobs:
           sudo apt install wireguard
           sudo apt install resolvconf
           sudo apt install openjdk-17-jre
+          sudo apt-get install libc6-i386
+
 
       - name: Config Sonar
         run: |
