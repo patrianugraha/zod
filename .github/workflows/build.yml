@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt install wireguard
           sudo apt install resolvconf
-          sudo apt install openjdk-17-jdk
+          sudo apt install openjdk-17-jre
 
       - name: Config Sonar
         run: |
