@@ -41,6 +41,6 @@ jobs:
           sudo wg-quick up wg0
 
       - name: Sonar Analysis
-        run: /opt/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.squantumengine.com
+        run: /opt/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} --Dsonar.token=${{ secrets.SONAR_TOKEN }}
           
           
