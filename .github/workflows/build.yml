@@ -42,7 +42,7 @@ jobs:
       - name: Sonar Analysis
         run: /opt/sonar-scanner/bin/sonar-scanner \
               -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-              -Dsonar.token=${{ secrets.SONAR_TOKEN }}  \
+              -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
               -Dsonar.projectKey=${{ github.event.repository.name }} \
               -Dsonar.organization=patrianugraha \
               -Dsonar.sources=src
