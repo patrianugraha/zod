@@ -35,8 +35,7 @@ jobs:
 
       - name: Config Wireguard
         run: |
-          echo '${{ secrets.WIREGUARD_CONFIG }}' > wg0.conf
-          sudo cp wg0.conf /etc/wireguard
+          echo '${{ secrets.WIREGUARD_CONFIG }}' | sudo tee /etc/wireguard/wg0.conf
           sudo wg-quick up wg0
 
       - name: Sonar Analysis
