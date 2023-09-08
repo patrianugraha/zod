@@ -32,6 +32,8 @@ jobs:
           unzip sonar-scanner-cli-5.0.1.3006-linux.zip
           sudo cp sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/bin
           sudo cp sonar-scanner-5.0.1.3006-linux/lib/sonar-scanner-cli-5.0.1.3006.jar /usr/lib/
+          sudo ln -s /usr/bin/java sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /jre/bin/java
+
 
       - name: Config Wireguard
         run: |
