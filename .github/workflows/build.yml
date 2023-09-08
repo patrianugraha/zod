@@ -20,25 +20,27 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
           
-      - run: |
+      - name: Install dependencies
+        run: |
           sudo apt install wireguard
           sudo apt install resolvconf
+          sudo apt install openjdk-17-jdk
 
-      - run: echo '${{ secrets.WIREGUARD_CONFIG }}' > wg0.conf
+      - name: Config Sonar
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner-cli-5.0.1.3006.zip
+          mv sonar-scanner-cli-5.0.1.3006 sonar-scanner-cli
+          echo '${{ secrets.SONAR_HOST_URL }}' >> /sonar-scanner-cli/conf/sonar-scanner.properties
+          export PATH="/sonar-scanner-cli/bin:$PATH"
 
-      - run: sudo cp wg0.conf /etc/wireguard
+      - name: Config Wireguard
+        run: |
+          echo '${{ secrets.WIREGUARD_CONFIG }}' > wg0.conf
+          sudo cp wg0.conf /etc/wireguard
+          sudo wg-quick up wg0
 
-      - run: sudo wg-quick up wg0
-
-      - run: curl -vvv https://sonarqube.squantumengine.com
-
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      - uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Sonar Analysis
+        run: sonar-scanner 
+          
+          
