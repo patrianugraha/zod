@@ -29,8 +29,8 @@ jobs:
       - name: Config Sonar
         run: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner-cli-5.0.1.3006.zip
-          mv sonar-scanner-cli-5.0.1.3006 sonar-scanner-cli
+          unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+          mv sonar-scanner-cli-5.0.1.3006-linux sonar-scanner-cli
           echo '${{ secrets.SONAR_HOST_URL }}' >> /sonar-scanner-cli/conf/sonar-scanner.properties
           export PATH="/sonar-scanner-cli/bin:$PATH"
 
