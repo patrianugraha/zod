@@ -31,13 +31,10 @@ jobs:
       - name: Config Sonar
         run: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-          sudo cp sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/bin
-          sudo cp sonar-scanner-5.0.1.3006-linux/lib/sonar-scanner-cli-5.0.1.3006.jar /usr/lib/
-          sudo chmod 755 sonar-scanner-5.0.1.3006-linux/jre/bin/java
-
-
-
+          sudo -d /opt unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+          cd /opt
+          ls -la
+          sudo mv sonar-scanner-5.0.1.3006-linux sonar-scanner
 
       - name: Config Wireguard
         run: |
@@ -46,6 +43,6 @@ jobs:
           sudo wg-quick up wg0
 
       - name: Sonar Analysis
-        run: sonar-scanner 
+        run: /opt/sonar-scanner/bin/sonar-scanner
           
           
