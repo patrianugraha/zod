@@ -32,6 +32,8 @@ jobs:
 
       - run: sudo wg-quick up wg0
 
+      - run: curl -vvv https://sonarqube.squantumengine.com
+
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
