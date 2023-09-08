@@ -31,7 +31,7 @@ jobs:
       - name: Config Sonar
         run: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          sudo unzip -d /opt unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+          sudo unzip -d /opt sonar-scanner-cli-5.0.1.3006-linux.zip
           cd /opt
           ls -la
           sudo mv sonar-scanner-5.0.1.3006-linux sonar-scanner
