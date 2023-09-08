@@ -33,7 +33,6 @@ jobs:
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           sudo unzip -d /opt sonar-scanner-cli-5.0.1.3006-linux.zip
           sudo mv /opt/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
-          echo '${{ secrets.SONAR_HOST_URL }}' | sudo tee -a /opt/sonar-scanner/conf/sonar-scanner.properties
 
       - name: Config Wireguard
         run: |
@@ -42,6 +41,6 @@ jobs:
           sudo wg-quick up wg0
 
       - name: Sonar Analysis
-        run: /opt/sonar-scanner/bin/sonar-scanner
+        run: /opt/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.squantumengine.com
           
           
