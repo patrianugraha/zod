@@ -20,20 +20,13 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
           
-      - name: Add hosts to /etc/hosts
-        run: sudo echo "10.10.0.18 sonarqube.squantumengine.com" | sudo tee -a /etc/hosts      
- 
       - run: sudo apt install wireguard
 
-      - run: sudo ip link add dev wg0 type wireguard
+      - run: sudo mkdir -p /etc/wireguard
 
-      - run: sudo ip address add dev wg0 100.93.172.194/24
+      - run: sudo echo '${{ secrets.WIREGUARD_CONFIG }}' > /etc/wireguard/wg0.conf
 
-      - run: echo '${{ secrets.WIREGUARD_CONFIG }}' > wireguard.conf
-
-      - run: sudo wg setconf wg0 wireguard.conf
-
-      - run: sudo ip link set up dev wg0
+      - run: sudo wg-quick up wg0
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
